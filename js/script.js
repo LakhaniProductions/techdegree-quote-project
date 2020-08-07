@@ -52,45 +52,35 @@ const quotes = [
     tag:'Television Series',
     misc:' Actor: Jonathan Banks'
   }
-  
-  
-
 ]
 
-
-
 /***
- * `getRandomQuote` function
+ * `getRandomQuote` delivers a random quote object and 
 ***/
 
 function getRandomQuote() {
-  
   let arrayIndex = Math.floor(Math.random() * quotes.length);
-
   return quotes[arrayIndex];
 };
 
-
+/***
+ * Random value function generates a random nubmer between 0 and 255
+ ***/
 function randomValue() {
   return Math.floor(Math.random() * 256);
 };
 
+/***
+ * generates a random RGB color by calling the randomValue function above
+ ***/
 function randomRGB(value) {
   const color =`rgb(${value()},${value()},${value()} )`;
   return color;
 }
 
-
-
-
-
-
-
 /***
- * `printQuote` function
+ * printQuote changes body background color and tests various conditons to print quote to DOM
 ***/
-
-
 
 function printQuote(){
 
@@ -114,8 +104,9 @@ function printQuote(){
   }
   
 }
-
-
+/*** 
+ * Setting a 3 second time interval 
+***/
 setInterval(printQuote, 3000);
 
 
