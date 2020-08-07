@@ -68,8 +68,18 @@ function getRandomQuote() {
   let arrayIndex = Math.floor(Math.random() * quotes.length);
 
   return quotes[arrayIndex];
-
 };
+
+
+function randomValue() {
+  return Math.floor(Math.random() * 256);
+};
+
+function randomRGB(value) {
+  const color =`rgb(${value()},${value()},${value()} )`;
+  return color;
+}
+
 
 
 
@@ -80,10 +90,13 @@ function getRandomQuote() {
  * `printQuote` function
 ***/
 
-function printQuote (){
-  let quoObject = getRandomQuote();
-  
 
+
+function printQuote(){
+
+  document.body.style.background = randomRGB(randomValue);
+
+  let quoObject = getRandomQuote();
   let quoString = `<p class="quote"> ${quoObject.quote} </p>`;
   let sourceString = `<p class="source"> ${quoObject.source}`;
 
@@ -91,24 +104,20 @@ function printQuote (){
     let citString = `<span class="citation">${quoObject.citation}</span>`;
     let yearString = `<span class="year">${quoObject.year}</span>`;
     let tagString = `<span class="tag">${quoObject.tag}</span>`;
-    let miscString = `<span class="misc">${quoObject.misc}</span>`;
-
-    
+    let miscString = `<span class="misc">${quoObject.misc}</span>`;  
 
     sourceString  += `${citString}` + `${yearString}` + `, ` + `${tagString}` + `, ` + `${miscString}` + `</p>`; 
     return document.getElementById('quote-box').innerHTML = `${quoString}` + `${sourceString}`;
+
   } else {
     return sourceString += `</p>`;
   }
-    
   
-
-  
-  
-
 }
 
-printQuote();
+
+setInterval(printQuote, 3000);
+
 
 /***
  * click event listener for the print quote button
