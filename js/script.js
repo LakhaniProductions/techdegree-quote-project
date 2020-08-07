@@ -18,7 +18,7 @@ const quotes = [
     citation: 'Snatch',
     year: 2001,
     tag:'Motion Picture',
-    actor:' Brad Pitt'
+    misc:' Actor: Brad Pitt'
   },
   {
     quote: `May the wind always be at your back and the sun upon your face. And may the wings of destiny carry you aloft to dance with the stars.`,
@@ -26,7 +26,7 @@ const quotes = [
     citation: 'Blow',
     year: 2001,
     tag:'Motion Picture',
-    actor:'Johnny Depp'
+    misc:' Actor: Johnny Depp'
   },
   {
     quote: `Of all forms of caution, caution in love is perhaps the most fatal to true happiness.`,
@@ -34,7 +34,7 @@ const quotes = [
     citation: 'The Conquest of Happiness',
     year: 1930,
     tag:'Novel',
-    publisher: 'Liveright'
+    misc: ' Publisher: Liveright'
   },
   {
     quote: `For you, a thousand times over.`,
@@ -42,7 +42,7 @@ const quotes = [
     citation: 'The Kite Runner',
     year: 2003,
     tag:'Novel',
-    publisher:'Riverhead Books'
+    misc:' Publisher: Riverhead Books'
   },
   {
     quote: `Moral of the story is: I chose a half measure when I should have gone all the way. I'll never make that mistake again. No more half measures, Walter.`,
@@ -50,19 +50,29 @@ const quotes = [
     citation: 'Breaking Bad',
     year: 2010,
     tag:'Television Series',
-    actor:'Jonathan Banks'
+    misc:' Actor: Jonathan Banks'
   }
   
   
 
 ]
 
-console.log(quotes[0].quote);
-console.log(quotes[4].source);
+
 
 /***
  * `getRandomQuote` function
 ***/
+
+function getRandomQuote() {
+  
+  let arrayIndex = Math.floor(Math.random() * quotes.length);
+
+  return quotes[arrayIndex];
+
+};
+
+
+
 
 
 
@@ -70,11 +80,39 @@ console.log(quotes[4].source);
  * `printQuote` function
 ***/
 
+function printQuote (){
+  let quoObject = getRandomQuote();
+  
 
+  let quoString = `<p class="quote"> ${quoObject.quote} </p>`;
+  let sourceString = `<p class="source"> ${quoObject.source}`;
+
+  if(quoObject.hasOwnProperty('citation') && quoObject.hasOwnProperty('year') && quoObject.hasOwnProperty('tag') && quoObject.hasOwnProperty('misc')) {
+    let citString = `<span class="citation">${quoObject.citation}</span>`;
+    let yearString = `<span class="year">${quoObject.year}</span>`;
+    let tagString = `<span class="tag">${quoObject.tag}</span>`;
+    let miscString = `<span class="misc">${quoObject.misc}</span>`;
+
+    
+
+    sourceString  += `${citString}` + `${yearString}` + `, ` + `${tagString}` + `, ` + `${miscString}` + `</p>`; 
+    return document.getElementById('quote-box').innerHTML = `${quoString}` + `${sourceString}`;
+  } else {
+    return sourceString += `</p>`;
+  }
+    
+  
+
+  
+  
+
+}
+
+printQuote();
 
 /***
  * click event listener for the print quote button
  * DO NOT CHANGE THE CODE BELOW!!
 ***/
 
-// document.getElementById('load-quote').addEventListener("click", printQuote, false);
+document.getElementById('load-quote').addEventListener("click", printQuote, false);
