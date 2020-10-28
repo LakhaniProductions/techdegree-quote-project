@@ -112,7 +112,7 @@ function printQuote(){
 /*** 
  * Setting a 3 second time interval 
 ***/
-setInterval(printQuote, 3000);
+setInterval(printQuote, 6000);
 
 
 /***
